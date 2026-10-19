@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Sayang! 💖 Mutia Fajriah dari Juska</title>
+  <meta name="description" content="Animasi otomatis ucapan ulang tahun romantis dari Juska untuk Mutia Fajriah tercinta dengan boneka lucu yang berjalan!">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Pacifico&family=Quicksand:wght@500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Canvas Confetti & Sparkles -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Floating Romantic Elements -->
+  <div class="floating-bg" aria-hidden="true">
+    <span class="float-item item-1">💖</span>
+    <span class="float-item item-2">✨</span>
+    <span class="float-item item-3">🌹</span>
+    <span class="float-item item-4">💌</span>
+    <span class="float-item item-5">🎂</span>
+    <span class="float-item item-6">⭐</span>
+    <span class="float-item item-7">🥰</span>
+    <span class="float-item item-8">💍</span>
+  </div>
+
+  <!-- Auto-Show Progression Indicator -->
+  <div class="auto-progress-bar-container" title="Status Kejutan Otomatis">
+    <div class="auto-progress-fill" id="auto-progress-fill"></div>
+    <span class="auto-status-text" id="auto-status-text">🎬 Memulai Kejutan Spesial untuk Mutia...</span>
+  </div>
+
+  <!-- Top Navigation & Controls -->
+  <header class="top-nav">
+    <div class="couple-badge">
+      <span class="heart-pulse">❤️</span> Juska & Mutia
+    </div>
+    <div class="audio-toggle-container">
+      <button id="btn-music" class="pill-btn music-btn" title="Nyalakan / Matikan Musik Romantis">
+        <span id="music-icon" class="btn-icon">🎵</span>
+        <span id="music-text">Musik: On</span>
+      </button>
+      <button id="btn-sound-fx" class="pill-btn fx-btn" title="Nyalakan / Matikan Efek Suara">
+        <span id="fx-icon" class="btn-icon">🔊</span>
+        <span id="fx-text">Suara: On</span>
+      </button>
+    </div>
+    <button id="btn-party-horn" class="pill-btn party-btn" title="Hujan Cinta!">
+      <span class="btn-icon">💖</span> Hujan Cinta!
+    </button>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="app-container">
+    
+    <!-- SCENE 1: KOTAK KADO MISTERIUS (AUTO-OPENS) -->
+    <section id="scene-unboxing" class="scene active">
+      <div class="unboxing-card glassmorphism">
+        <div class="badge-tag">💌 Spesial Dari Pacarmu: Juska 💌</div>
+        <h1 class="main-title">Untuk Wanitaku Tercinta,<br><span class="highlight-name">Mutia Fajriah</span> 🌹</h1>
+        <p class="subtitle">
+          "Hari ini adalah hari paling membahagiakan karena wanita tercantik dan paling berharga di hidupku bertambah usia... Bersiap ya sayang, kado ini akan terbuka otomatis! 🎁"
+        </p>
+        
+        <!-- Interactive & Auto-Opening Gift Box -->
+        <div class="gift-box-wrapper" id="gift-box" role="button" tabindex="0" aria-label="Kotak Kado Otomatis Terbuka">
+          <div class="gift-lid">
+            <div class="ribbon-bow">
+              <span class="bow-left"></span>
+              <span class="bow-right"></span>
+              <span class="bow-center">❤️</span>
+            </div>
+            <div class="lid-stripe"></div>
+          </div>
+          <div class="gift-body">
+            <div class="body-stripe-v"></div>
+            <div class="body-stripe-h"></div>
+            <span class="box-tag">From: Juska ❤️</span>
+          </div>
+          <div class="click-hint" id="tap-counter-hint">
+            <span class="auto-spinner">⏳</span> <span id="auto-countdown-text">Membuka otomatis dalam 3 detik...</span>
+          </div>
+        </div>
+
+        <div class="mascot-greeting">
+          <div class="mini-cat-peek">
+            <div class="cat-ears"></div>
+            <div class="cat-face">
+              <div class="cat-eyes"><span></span><span></span></div>
+              <div class="cat-nose"></div>
+              <div class="cat-cheeks"><span></span><span></span></div>
+            </div>
+          </div>
+          <p class="mascot-speech" id="unboxing-speech">"Kejutan manis dari Juska siap meledak penuh cinta! 🥰✨"</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCENE 2: PESTA ULANG TAHUN UTAMA (AUTO-PLAYING SHOW) -->
+    <section id="scene-party" class="scene hidden">
+      <div class="party-card glassmorphism">
+        
+        <!-- Romantic Header Banner -->
+        <div class="party-banner">
+          <span class="decor-flag">✨</span>
+          <h2 class="title-celebration">Barakallah Fii Umrik Sayangku</h2>
+          <span class="decor-flag">✨</span>
+        </div>
+        
+        <h1 class="target-name">👑 Mutia Fajriah 👑</h1>
+        
+        <!-- Spotlight Photo Frame of Mutia -->
+        <div class="mutia-spotlight-hero">
+          <div class="spotlight-crown">👑</div>
+          <div class="spotlight-frame">
+            <img src="images/mutia-3.jpg" alt="Mutia Fajriah Cantik" id="hero-mutia-photo" class="spotlight-img">
+          </div>
+          <div class="spotlight-caption">
+            <span class="sparkle-star">✨</span> Bidadari Tercantikku <span class="sparkle-star">✨</span>
+          </div>
+        </div>
+
+        <div class="love-subtitle">
+          <span class="signature-quote">"Terima kasih sudah lahir ke dunia dan melengkapi hidupku." — Juska ❤️</span>
+        </div>
+
+        <!-- Mascots in Love & 3D Interactive/Auto Cake -->
+        <div class="mascots-stage">
+          <!-- Mascot Juska Bear -->
+          <div class="mascot mascot-cat">
+            <div class="party-hat"></div>
+            <div class="cat-head">
+              <div class="ear left"></div>
+              <div class="ear right"></div>
+              <div class="eyes">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+              </div>
+              <div class="blush left"></div>
+              <div class="blush right"></div>
+              <div class="mouth">3</div>
+            </div>
+            <div class="cat-body-wrap">
+              <div class="paw left">❤️</div>
+              <div class="paw right">🐾</div>
+              <div class="tail"></div>
+            </div>
+            <div class="mascot-name">Juska 🐱</div>
+          </div>
+
+          <!-- 3D Romantic Birthday Cake -->
+          <div class="cake-container" id="cake-container" title="Klik untuk tiup atau nyalakan lilin!">
+            <div class="cake-plate"></div>
+            
+            <!-- Candles -->
+            <div class="candles-wrap">
+              <div class="candle candle-1">
+                <div class="flame" id="flame-1"></div>
+                <div class="wick"></div>
+                <div class="candle-stick"></div>
+              </div>
+              <div class="candle candle-center">
+                <div class="flame" id="flame-2"></div>
+                <div class="wick"></div>
+                <div class="candle-stick heart-stick">❤️</div>
+              </div>
+              <div class="candle candle-3">
+                <div class="flame" id="flame-3"></div>
+                <div class="wick"></div>
+                <div class="candle-stick"></div>
+              </div>
+            </div>
+
+            <!-- Cake Tiers -->
+            <div class="cake-tier tier-top">
+              <div class="icing-dripping"></div>
+              <div class="cherries">
+                <span>🍓</span><span>💖</span><span>🍓</span>
+              </div>
+            </div>
+            <div class="cake-tier tier-middle">
+              <div class="cake-cream"></div>
+              <div class="cake-decorations">
+                <span class="choco-dot"></span>
+                <span class="choco-dot"></span>
+                <span class="choco-dot"></span>
+                <span class="choco-dot"></span>
+              </div>
+            </div>
+            <div class="cake-tier tier-bottom">
+              <div class="cake-inscription">JUSKA ❤️ MUTIA</div>
+            </div>
+          </div>
+
+          <!-- Mascot Mutia Bunny -->
+          <div class="mascot mascot-bunny">
+            <div class="party-hat hat-blue"></div>
+            <div class="bunny-head">
+              <div class="bunny-ear left"></div>
+              <div class="bunny-ear right"></div>
+              <div class="eyes">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+              </div>
+              <div class="blush left"></div>
+              <div class="blush right"></div>
+              <div class="bunny-nose"></div>
+            </div>
+            <div class="bunny-body-wrap">
+              <div class="paw left">🌸</div>
+              <div class="paw right">✨</div>
+            </div>
+            <div class="mascot-name">Mutia 🐰</div>
+          </div>
+        </div>
+
+        <!-- Candle Blow Status -->
+        <div class="cake-actions">
+          <button id="btn-blow-candles" class="action-btn blow-btn">
+            <span class="btn-emoji">💨</span> Tiup Lilinnya & Panjatkan Harapan!
+          </button>
+          <div id="candle-status" class="candle-status-msg">
+            Lilin akan ditiup otomatis... Make a wish ya sayang! 🌟
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="fun-activities-nav">
+          <button class="nav-tab active" data-target="tab-gallery">📸 Galeri Foto Mutia</button>
+          <button class="nav-tab" data-target="tab-letter">💌 Surat Cinta Juska</button>
+          <button class="nav-tab" data-target="tab-coupons">🎟️ Kupon Pacar Spesial</button>
+          <button class="nav-tab" data-target="tab-balloons">🎈 Balon Doa & Janji</button>
+          <button class="nav-tab" data-target="tab-meter">💖 Love Meter</button>
+        </div>
+
+        <!-- TAB 1: GALERI FOTO KENANGAN MUTIA (POLAROID SHOWCASE) -->
+        <div id="tab-gallery" class="tab-pane active">
+          <div class="gallery-container">
+            <h3>📸 Senyuman Terindah Mutia Fajriah</h3>
+            <p>Setiap foto ini merekam betapa anggun dan berharganya kamu di mata Juska 🥰👇</p>
+            
+            <div class="polaroid-row" id="polaroid-row">
+              
+              <!-- Foto 1: Kebaya Anggun -->
+              <div class="polaroid-card">
+                <div class="polaroid-pin">📌</div>
+                <div class="polaroid-img-wrapper">
+                  <img src="images/mutia-3.jpg" alt="Mutia Fajriah Cantik" loading="lazy">
+                </div>
+                <div class="polaroid-caption">"Pesona anggun bidadariku yang tiada duanya 🌸✨"</div>
+              </div>
+
+              <!-- Foto 2: Di Pantai -->
+              <div class="polaroid-card">
+                <div class="polaroid-pin">📌</div>
+                <div class="polaroid-img-wrapper">
+                  <img src="images/mutia-1.jpg" alt="Mutia di Pantai" loading="lazy">
+                </div>
+                <div class="polaroid-caption">"Senyum manismu sejuk kayak angin pantai 🌊💖"</div>
+              </div>
+
+              <!-- Foto 3: Kafe Kacamata -->
+              <div class="polaroid-card">
+                <div class="polaroid-pin">📌</div>
+                <div class="polaroid-img-wrapper">
+                  <img src="images/mutia-2.jpg" alt="Mutia di Kafe" loading="lazy">
+                </div>
+                <div class="polaroid-caption">"Tatapan di balik kacamata favorit Juska 🥰👓"</div>
+              </div>
+
+              <!-- Foto 4: Momen Gemas -->
+              <div class="polaroid-card">
+                <div class="polaroid-pin">📌</div>
+                <div class="polaroid-img-wrapper">
+                  <img src="images/mutia-4.jpg" alt="Mutia Gemas" loading="lazy">
+                </div>
+                <div class="polaroid-caption">"Sisi gemas Mutia yang selalu bikin rindu ❤️🌙"</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: SURAT CINTA DARI JUSKA -->
+        <div id="tab-letter" class="tab-pane hidden">
+          <div class="envelope-wrapper" id="envelope-wrapper">
+            <div class="envelope" id="envelope">
+              <div class="letter-content" id="letter-content">
+                <div class="letter-header">
+                  <span class="stamp">🌹 FOR MY GIRL</span>
+                  <span class="date" id="current-date-badge">19 Oktober 2026</span>
+                </div>
+                <h3>Untuk Mutia Fajriah-ku Tercinta, ❤️</h3>
+                <div class="letter-body">
+                  <p>
+                    Selamat ulang tahun ya, sayangku... 🎂🎉
+                  </p>
+                  <p>
+                    Di hari yang begitu istimewa ini, Juska cuma mau bilang betapa bersyukurnya aku memiliki kamu dalam hidupku. Terima kasih sudah menjadi perempuan yang selalu tulus, yang senyumannya selalu berhasil menghapus segala lelahku, dan yang tawanya selalu bikin duniaku terasa begitu damai dan berwarna.
+                  </p>
+                  <p>
+                    <strong>Doa tulus Juska untuk kamu di usiamu yang baru ini:</strong>
+                  </p>
+                  <ul class="love-wishes-list">
+                    <li>✨ <em>Semoga Mutia selalu diberi kesehatan prima, kebahagiaan hati yang meluap, dan dijauhkan dari overthinking.</em></li>
+                    <li>🌸 <em>Semoga setiap impian, cita-cita, dan target masa depanmu dipermudah jalannya oleh Allah SWT.</em></li>
+                    <li>💖 <em>Semoga kamu selalu ingat bahwa kamu wanita luar biasa yang sangat berharga dan sangat dicintai.</em></li>
+                    <li>🤲 <em>Dan semoga kita berdua bisa terus bersama, saling menjaga, saling melengkapi hingga ke jenjang yang kita impikan.</em></li>
+                  </ul>
+                  <p class="letter-sweet-note">
+                    Tetaplah jadi Mutia yang selalu ceria ya: yang manis, yang gemesin kalau lagi manja, dan yang selalu jadi tempat pulang ternyaman bagi Juska.
+                  </p>
+                  <p>
+                    <em>I love you to the moon and back. Happy birthday, my beautiful Mutia!</em> 🥰🌹
+                  </p>
+                </div>
+                <div class="letter-footer">
+                  <p>Dari cowokmu yang paling mencintaimu,</p>
+                  <p class="signature">❤️ Juska ❤️</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: KUPON PACAR SPESIAL -->
+        <div id="tab-coupons" class="tab-pane hidden">
+          <div class="coupons-container">
+            <h3>🎟️ Hadiah Kupon Cinta Spesial Ulang Tahun</h3>
+            <p>Kupon resmi dari Juska untuk Mutia! Bisa diklaim kapanpun kamu mau tanpa tanggal kedaluwarsa! 😉👇</p>
+            <div class="coupons-grid" id="coupons-grid">
+              
+              <div class="coupon-card" data-coupon="Jajan Bebas">
+                <div class="coupon-icon">🍕</div>
+                <h4>Kupon Jajan Bebas</h4>
+                <p>Juska bayarin makanan, minuman boba, seblak, atau apapun yang Mutia inginkan!</p>
+                <button class="claim-btn">Klaim Kupon Ini! ✨</button>
+              </div>
+
+              <div class="coupon-card" data-coupon="Peluk Hangat & Curhat">
+                <div class="coupon-icon">🫂</div>
+                <h4>Kupon Peluk & Curhat 24/7</h4>
+                <p>Sandaran bahu tanpa batas waktu saat Mutia lelah atau butuh didengarkan.</p>
+                <button class="claim-btn">Klaim Kupon Ini! ✨</button>
+              </div>
+
+              <div class="coupon-card" data-coupon="Bebas Ngambek">
+                <div class="coupon-icon">🥺</div>
+                <h4>Kupon Bebas Ngambek</h4>
+                <p>Mutia bebas manja dan ngambek seharian, dan Juska wajib bujuk sampai senyum lagi!</p>
+                <button class="claim-btn">Klaim Kupon Ini! ✨</button>
+              </div>
+
+              <div class="coupon-card" data-coupon="Date Romantis Impian">
+                <div class="coupon-icon">🎡</div>
+                <h4>Kupon Date & Quality Time</h4>
+                <p>Jalan-jalan ke tempat impian Mutia, seharian penuh fokus cuma buat kita berdua.</p>
+                <button class="claim-btn">Klaim Kupon Ini! ✨</button>
+              </div>
+
+            </div>
+            
+            <div id="coupon-alert" class="coupon-alert hidden"></div>
+          </div>
+        </div>
+
+        <!-- TAB 4: BALON DOA & JANJI -->
+        <div id="tab-balloons" class="tab-pane hidden">
+          <div class="balloon-game-header">
+            <h3>🎈 Balon Harapan & Janji Setia</h3>
+            <p>Setiap balon menyimpan satu janji dan doa manis dari Juska untuk Mutia:</p>
+          </div>
+          <div class="balloons-grid" id="balloons-grid">
+            <!-- Balloons generated dynamically -->
+          </div>
+          <div id="balloon-message-box" class="balloon-message-box hidden">
+            <div class="message-inner">
+              <span class="close-msg" id="btn-close-msg">&times;</span>
+              <div class="msg-icon" id="msg-icon">✨</div>
+              <h4 id="msg-title">Doa Spesial</h4>
+              <p id="msg-text">Pesan doa akan muncul di sini!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 5: LOVE METER -->
+        <div id="tab-meter" class="tab-pane hidden">
+          <div class="love-meter-container">
+            <h3>💖 Seberapa Besar Rasa Sayang Juska ke Mutia?</h3>
+            <p>Mari kita ukur kadar cinta Juska hari ini! (Akan otomatis terisi penuh ♾️):</p>
+            
+            <div class="meter-bar-wrapper">
+              <div class="meter-fill" id="meter-fill">
+                <span class="meter-percent" id="meter-percent">0%</span>
+              </div>
+            </div>
+
+            <button id="btn-measure-love" class="action-btn love-meter-btn">
+              💓 Ukur Cinta Juska Sekarang!
+            </button>
+
+            <div id="meter-result-msg" class="meter-result-msg hidden"></div>
+          </div>
+        </div>
+
+        <!-- Party Footer Actions -->
+        <div class="party-footer">
+          <button id="btn-replay" class="secondary-btn">
+            🔄 Putar Ulang Kejutan Dari Awal
+          </button>
+          <button id="btn-send-love" class="action-btn love-btn">
+            ❤️ Kirim Pelukan Untuk Juska! (<span id="love-count">1000</span>)
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       BONEKA ANIMASI YANG JALAN-JALAN (WALKING ANIMATED DOLLS)
+       ========================================================================== -->
+  <div class="walking-dolls-track" aria-label="Boneka Berjalan">
+    
+    <!-- Boneka 1: Chibi Beruang Juska Membawa Balon Hati -->
+    <div class="walking-doll doll-bear" id="doll-bear" title="Klik aku kak Mutia!">
+      <div class="doll-speech" id="doll-bear-speech">"Sayang Mutia! ❤️"</div>
+      
+      <!-- Balon Hati yang Dipegang -->
+      <div class="doll-balloon">
+        <span class="balloon-shape">❤️</span>
+        <span class="balloon-text">JUSKA</span>
+        <div class="balloon-thread"></div>
+      </div>
+
+      <!-- Tubuh Boneka Beruang -->
+      <div class="bear-character">
+        <div class="bear-ears">
+          <div class="ear-left"></div>
+          <div class="ear-right"></div>
+        </div>
+        <div class="bear-head">
+          <div class="bear-eyes">
+            <span class="eye"></span>
+            <span class="eye"></span>
+          </div>
+          <div class="bear-muzzle">
+            <span class="nose"></span>
+            <span class="smile">ω</span>
+          </div>
+          <div class="bear-cheeks">
+            <span class="blush"></span>
+            <span class="blush"></span>
+          </div>
+        </div>
+        <div class="bear-body">
+          <div class="bear-arm arm-left"></div>
+          <div class="bear-belly">💖</div>
+          <div class="bear-arm arm-right"></div>
+        </div>
+        <div class="bear-legs">
+          <div class="leg leg-left"></div>
+          <div class="leg leg-right"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Boneka 2: Chibi Kelinci Mutia Cantik Membawa Bunga -->
+    <div class="walking-doll doll-bunny" id="doll-bunny" title="Klik aku!">
+      <div class="doll-speech" id="doll-bunny-speech">"Happy Birthday! 🌸"</div>
+      
+      <div class="bunny-character">
+        <div class="bunny-ears-walking">
+          <div class="b-ear left"></div>
+          <div class="b-ear right"></div>
+        </div>
+        <div class="bunny-head-walking">
+          <div class="bunny-bow">🎀</div>
+          <div class="bunny-eyes-walking">
+            <span class="b-eye"></span>
+            <span class="b-eye"></span>
+          </div>
+          <div class="bunny-cheeks-walking">
+            <span class="b-blush"></span>
+            <span class="b-blush"></span>
+          </div>
+          <div class="bunny-mouth-walking">3</div>
+        </div>
+        <div class="bunny-body-walking">
+          <div class="bunny-arm arm-left">🌸</div>
+          <div class="bunny-dress">✨</div>
+          <div class="bunny-arm arm-right"></div>
+        </div>
+        <div class="bunny-legs-walking">
+          <div class="b-leg left"></div>
+          <div class="b-leg right"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Boneka 3: Chibi Cat Kecil Pembawa Bintang Terbang -->
+    <div class="floating-pet-doll" id="floating-pet">
+      <span class="pet-bubble">🌟 Selamat Ultah Mutia! 🎂</span>
+      <div class="flying-cat">
+        <span class="cat-wings left">🪽</span>
+        <span class="cat-avatar">🐱</span>
+        <span class="cat-wings right">🪽</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="app-footer">
+    <p>Dibuat sepenuh hati oleh <strong>Juska</strong> untuk <strong>Mutia Fajriah</strong> tersayang 💖 | <em>Forever & Always</em></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
